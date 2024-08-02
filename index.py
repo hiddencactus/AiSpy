@@ -18,7 +18,7 @@ for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 print(len(gpus)) #no nvidia gpu unfortunately....
 
-data_dir = 'aithing\data'                               #directory name
+data_dir = 'aithingy\\data'                               #directory name
 image_exts = ['jpeg', 'jpg', 'bmp', 'png']
 
 #print(os.listdir(os.path.join(data_dir, 'happy')))                             #copy relative path. join method will concate the provided paths
@@ -56,8 +56,8 @@ data = tf.keras.utils.image_dataset_from_directory(data_dir)        #reads image
 #print(batch[1])                                 #len(batch) returns 2. A batch consists of samples, which are 1. the images loaded from the directories and 2. the labels
                                                 #prints [1 1 1 1 1 1 1 1 1 0 0 1 0 1 1 1 1 1 0 1 0 1 1 1 1 1 1 0 0 0 1 1], 1 and 0's assigned in alphabetical order
                                                 #hence, happy is assigned 0, sad assigned 1
-# class_names = data.class_names
-# print(class_names)
+class_names = data.class_names
+print(class_names)
 
 #-------------------------------------------------------- 4 IMAGES FROM BATCH VISUALIZATION CLASS 0 = HAPPY, CLASS 1 = SAD
 # fig, ax = plt.subplots(ncols=4, figsize=(20,20))
@@ -152,7 +152,7 @@ model.summary()                                                                 
 
 
 #------ TRAINING THE MODEL
-logdir='aithing\logs'           #path to log directory
+logdir='aithing\\logs'           #path to log directory
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)   #saves model at checkpoint, callback is not a callback function, in tensorflow its an object that can perform specific actions at various stages of training
                                                                         # at start or end of an epoch, before or after a single batch is processed, when training begins or ends
                                                                         #the checkpoint is important, because if you end up overtraining / overfitting and the accuracy worsens, you can return to previous checkpoint
@@ -164,19 +164,19 @@ hist = model.fit(train, epochs=20, validation_data=val, callbacks=[tensorboard_c
 
 
 #---------------------- EVALUATING PERFORMANCE
-# fig = plt.figure()
-# plt.plot(hist.history['loss'], color='teal', label='loss')      #takes an array and plots it on a graph
-# plt.plot(hist.history['val_loss'], color='orange', label='val_loss')    #loss quantifies the difference between the predicted values and true values. Accuracy is proportion of correct guesses
-# fig.suptitle('Loss', fontsize=20)
-# plt.legend(loc="upper left")
-# plt.show()
+fig = plt.figure()
+plt.plot(hist.history['loss'], color='teal', label='loss')      #takes an array and plots it on a graph
+plt.plot(hist.history['val_loss'], color='orange', label='val_loss')    #loss quantifies the difference between the predicted values and true values. Accuracy is proportion of correct guesses
+fig.suptitle('Loss', fontsize=20)
+plt.legend(loc="upper left")
+plt.show()
 
-# fig = plt.figure()
-# plt.plot(hist.history['accuracy'], color='teal', label='loss')      #takes an array and plots it on a graph
-# plt.plot(hist.history['val_accuracy'], color='orange', label='val_loss')    #loss quantifies the difference between the predicted values and true values. Accuracy is proportion of correct guesses
-# fig.suptitle('Loss', fontsize=20)
-# plt.legend(loc="upper left")
-# plt.show()
+fig = plt.figure()
+plt.plot(hist.history['accuracy'], color='teal', label='accuracy')      #takes an array and plots it on a graph
+plt.plot(hist.history['val_accuracy'], color='orange', label='val_accuracy')    #loss quantifies the difference between the predicted values and true values. Accuracy is proportion of correct guesses
+fig.suptitle('Loss', fontsize=20)
+plt.legend(loc="upper left")
+plt.show()
 
 pre = metrics.Precision()
 re = metrics.Precision()
@@ -191,7 +191,7 @@ for batch in test.as_numpy_iterator():
 
 print(f'Precision:{pre.result().numpy()}, Recall:{re.result().numpy()}, Accuracy:{acc.result().numpy()}')
 
-img = cv2.imread('aithing\happytest.jpg')
+img = cv2.imread('aithingy\happytest.jpg')
 plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.show()
 
