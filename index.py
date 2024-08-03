@@ -152,7 +152,7 @@ model.summary()                                                                 
 
 
 #------ TRAINING THE MODEL
-logdir='aithing\\logs'           #path to log directory
+logdir='aithingy\logs'           #path to log directory
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)   #saves model at checkpoint, callback is not a callback function, in tensorflow its an object that can perform specific actions at various stages of training
                                                                         # at start or end of an epoch, before or after a single batch is processed, when training begins or ends
                                                                         #the checkpoint is important, because if you end up overtraining / overfitting and the accuracy worsens, you can return to previous checkpoint
@@ -193,7 +193,7 @@ print(f'Precision:{pre.result().numpy()}, Recall:{re.result().numpy()}, Accuracy
 
 img = cv2.imread('aithingy\\humanart1.jpg')
 plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-plt.show()
+plt.show() 
 
 resize = tf.image.resize(img, (256, 256))
 plt.imshow(resize.numpy().astype(int))
