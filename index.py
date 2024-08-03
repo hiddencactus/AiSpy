@@ -191,7 +191,7 @@ for batch in test.as_numpy_iterator():
 
 print(f'Precision:{pre.result().numpy()}, Recall:{re.result().numpy()}, Accuracy:{acc.result().numpy()}')
 
-img = cv2.imread('aithingy\happytest.jpg')
+img = cv2.imread('aithingy\\humanart1.jpg')
 plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 plt.show()
 
@@ -202,3 +202,5 @@ plt.show()
 np.expand_dims(resize, 0)
 yhat = model.predict(np.expand_dims(resize/255, 0))     #the 
 print(yhat)
+
+#on startup, do a get request that launches this code. Then, each get req can do a model.predict
